@@ -12,7 +12,7 @@ export default function SignUp() {
     <>
       <Logo src={logo} alt="GoBarber" />
       <Form>
-        <Input type="text" placeholder="Nome" />
+        <Input type="text" placeholder="Nome" autoFocus />
         <Input type="email" placeholder="E-mail" />
         <Input type="password" placeholder="Senha" />
         <PrimaryButton type="submit">registrar</PrimaryButton>
