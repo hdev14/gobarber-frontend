@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { lighten } from 'polished';
+import { Form, Input } from '@rocketseat/unform';
 
 export const Container = styled.div`
   display: flex;
@@ -17,18 +18,19 @@ export const Logo = styled.img`
   width: 150px;
 `;
 
-export const Form = styled.form`
+export const UnForm = styled(Form)`
   display: flex;
   flex-direction: column;
 `;
 
-export const Input = styled.input`
+export const UnInput = styled(Input)`
   margin: 5px 0;
   height: 30px;
   padding: 0 15px;
   border-radius: 4px;
   border: none;
   font-weight: 600;
+  letter-spacing: 0.8px;
   background-color: rgb(50,19,19, 0.1);
 
   &:focus {
