@@ -21,6 +21,11 @@ export const Logo = styled.img`
 export const UnForm = styled(Form)`
   display: flex;
   flex-direction: column;
+
+  span {
+    font-size: 12px;
+    color: tomato;
+  }
 `;
 
 export const UnInput = styled(Input)`
