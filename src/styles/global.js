@@ -23,11 +23,16 @@ export default createGlobalStyle`
     --text-color2: #100C02;
   }
 
+  body, #root {
+    height: 100%;
+  }
+
   body {
     font-family: 'Montserrat', sans-serif;
     background-image: linear-gradient(to top left, var(--color2), var(--color1));
     background-repeat: no-repeat;
-  }
+    -webkit-font-smoothing: antialiased;
+ }
 
   h1, h2, h3 {
     color: var(--text-color2);
@@ -37,4 +42,20 @@ export default createGlobalStyle`
     color: var(--text-color1);
   }
 
+  a {
+    text-decoration: none;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  input, textarea, button {
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  button {
+    cursor: pointer;
+  }
 `;
