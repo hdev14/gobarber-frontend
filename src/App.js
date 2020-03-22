@@ -6,9 +6,12 @@ import history from './services/history';
 
 import './configs/ReactotronConfig';
 
+import GlobaStyle from './styles/global';
+
 export default function App() {
   return (
     <Router history={history}>
+      <GlobaStyle />
       <Routes />
     </Router>
   );
