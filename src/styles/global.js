@@ -51,7 +51,7 @@ export default createGlobalStyle`
   }
 
   input, textarea, button {
-    font-size: 16px;
+    font-size: 14px;
     font-family: 'Montserrat', sans-serif;
   }
 
