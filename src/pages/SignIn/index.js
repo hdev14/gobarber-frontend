@@ -8,7 +8,6 @@ import {
   Logo, UnForm, UnInput, PrimaryButton, LinkFooter,
 } from '../../styles/utils';
 
-
 const schema = Yup.object().shape({
   email: Yup.string()
     .email('E-mail inválido')
