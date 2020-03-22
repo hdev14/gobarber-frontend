@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
-const globalStyle = createGlobalStyle`
+export default createGlobalStyle`
 
   @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,600i&display=swap');
 
@@ -38,5 +38,3 @@ const globalStyle = createGlobalStyle`
   }
 
 `;
-
-export default globalStyle;
