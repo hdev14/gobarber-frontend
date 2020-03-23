@@ -5,26 +5,30 @@ import {
 import api from '../../../services/api';
 import history from '../../../services/history';
 
-import { signInSuccess } from './actions';
+import { signInSuccess, signFailure } from './actions';
 
 export function* signIn({ payload }) {
   const { email, password } = payload;
 
-  const response = yield call(api.post, '/sessions', {
-    email,
-    password,
-  });
+  try {
+    const response = yield call(api.post, '/sessions', {
+      email,
+      password,
+    });
 
-  const { user, token } = response.data;
+    const { user, token } = response.data;
 
-  if (!user.provider) {
-    console.tron.error('Nâo é um provider');
-    return;
+    if (!user.provider) {
+      console.tron.error('Nâo é um provider');
+      return;
+    }
+
+    yield put(signInSuccess(user, token));
+
+    history.push('/dashboard');
+  } catch (err) {
+    yield put(signFailure());
   }
-
-  yield put(signInSuccess(user, token));
-
-  history.push('/dashboard');
 }
 
 export default all([
