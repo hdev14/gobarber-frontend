@@ -5,18 +5,20 @@ import PropTypes from 'prop-types';
 import AuthLayout from '../layouts/auth';
 import DefaultLayout from '../layouts/default';
 
-export default function Route({ component: Component, isPrivate, ...rest }) {
-  const signer = false;
+import { store } from '../store';
 
-  if (!signer && isPrivate) {
+export default function Route({ component: Component, isPrivate, ...rest }) {
+  const { signed } = store.getState().auth;
+
+  if (!signed && isPrivate) {
     return <Redirect path="/" />;
   }
 
-  if (signer && !isPrivate) {
+  if (signed && !isPrivate) {
     return <Redirect to="/dashboard" />;
   }
 
-  const Layout = signer ? AuthLayout : DefaultLayout;
+  const Layout = signed ? AuthLayout : DefaultLayout;
 
   return (
     <R

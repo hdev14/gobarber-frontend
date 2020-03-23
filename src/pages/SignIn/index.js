@@ -1,6 +1,9 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
+
+import { signInRequest } from '../../store/modules/auth/actions';
 
 import logo from '../../assets/logo.svg';
 
@@ -18,8 +21,11 @@ const schema = Yup.object().shape({
 });
 
 export default function SignIn() {
-  function handleSubmit(data) {
-    console.tron.log(data);
+  const dispatch = useDispatch();
+  const loading = useSelector((state) => state.auth.loading);
+
+  function handleSubmit({ email, password }) {
+    dispatch(signInRequest(email, password));
   }
 
   return (
@@ -28,7 +34,7 @@ export default function SignIn() {
       <UnForm onSubmit={handleSubmit} schema={schema}>
         <UnInput name="email" text="email" placeholder="E-mail" autoFocus />
         <UnInput name="password" type="password" placeholder="Senha" />
-        <PrimaryButton type="submit">entrar</PrimaryButton>
+        <PrimaryButton type="submit">{loading ? 'carregando...' : 'entrar'}</PrimaryButton>
       </UnForm>
       <LinkFooter>
         Ainda não tem conta?
