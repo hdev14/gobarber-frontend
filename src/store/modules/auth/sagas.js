@@ -1,6 +1,7 @@
 import {
   all, takeLatest, call, put,
 } from 'redux-saga/effects';
+import { toast } from 'react-toastify';
 
 import api from '../../../services/api';
 import history from '../../../services/history';
@@ -19,7 +20,7 @@ export function* signIn({ payload }) {
     const { user, token } = response.data;
 
     if (!user.provider) {
-      console.tron.error('Nâo é um provider');
+      toast.error('Apenas prestadore podem acessar o sistema');
       return;
     }
 
@@ -27,6 +28,7 @@ export function* signIn({ payload }) {
 
     history.push('/dashboard');
   } catch (err) {
+    toast.error('E-mail ou senha incorretos');
     yield put(signFailure());
   }
 }
