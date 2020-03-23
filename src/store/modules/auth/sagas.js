@@ -24,6 +24,8 @@ export function* signIn({ payload }) {
       return;
     }
 
+    api.defaults.headers.Authorization = `Baerer ${token}`;
+
     yield put(signInSuccess(user, token));
 
     history.push('/dashboard');
@@ -33,6 +35,37 @@ export function* signIn({ payload }) {
   }
 }
 
+export function* signUp({ payload }) {
+  const { name, email, password } = payload;
+
+  try {
+    yield call(api.post, '/users', {
+      name,
+      email,
+      password,
+      provider: true,
+    });
+
+    toast.success('Cadastro realizado com sucesso!');
+    history.push('/');
+  } catch (err) {
+    toast.error('Falha ao cadastrar, por favor verifique seus dados!');
+    history.push('/register');
+  }
+}
+
+export function setToken({ payload }) {
+  if (!payload) return;
+
+  const { token } = payload.auth;
+
+  if (token) {
+    api.defaults.headers.Authorization = `Baerer ${token}`;
+  }
+}
+
 export default all([
   takeLatest('@auth/SIGN_IN_REQUEST', signIn),
+  takeLatest('@auth/SIGN_UP_REQUEST', signUp),
+  takeLatest('persist/REHYDRATE', setToken),
 ]);
