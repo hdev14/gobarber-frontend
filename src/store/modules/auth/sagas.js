@@ -24,6 +24,8 @@ export function* signIn({ payload }) {
       return;
     }
 
+    api.defaults.headers.Authorization = `Baerer ${token}`;
+
     yield put(signInSuccess(user, token));
 
     history.push('/dashboard');
@@ -52,7 +54,18 @@ export function* signUp({ payload }) {
   }
 }
 
+export function setToken({ payload }) {
+  if (!payload) return;
+
+  const { token } = payload.auth;
+
+  if (token) {
+    api.defaults.headers.Authorization = `Baerer ${token}`;
+  }
+}
+
 export default all([
   takeLatest('@auth/SIGN_IN_REQUEST', signIn),
   takeLatest('@auth/SIGN_UP_REQUEST', signUp),
+  takeLatest('persist/REHYDRATE', setToken),
 ]);
