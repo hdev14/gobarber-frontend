@@ -29,7 +29,6 @@ export const Content = styled.div`
       font-size: 14px;
       font-weight: 600;
       text-transform: uppercase;
-      margin-left: 10px;
       padding-left: 10px;
       border-left: 1px solid var(--color3)
     }
