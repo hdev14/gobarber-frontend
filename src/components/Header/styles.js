@@ -34,6 +34,10 @@ export const Content = styled.div`
       border-left: 1px solid var(--color3)
     }
   }
+
+  aside {
+    display: flex;
+  }
 `;
 
 export const Profile = styled.div`

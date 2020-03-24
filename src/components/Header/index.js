@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import logo from '../../assets/logo_header.svg';
+import Notifications from '../Notifications';
 
 import { Logo } from '../../styles/utils';
-
+import logo from '../../assets/logo_header.svg';
 import {
   Navbar, Content, Profile,
 } from './styles';
@@ -19,6 +19,7 @@ export default function Header() {
         </div>
 
         <aside>
+          <Notifications />
           <Profile>
             <div>
               <strong>Hermerson Araújo</strong>
