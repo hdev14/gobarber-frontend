@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MdNotifications } from 'react-icons/md';
 import PerfectScrollBar from 'react-perfect-scrollbar';
 
@@ -7,14 +7,19 @@ import {
 } from './styles';
 
 export default function Notifications() {
+  const [visible, setVisible] = useState(false);
+
   return (
     <Notification>
-      <NotificationButton hasUnread>
+      <NotificationButton onClick={() => setVisible(!visible)} hasUnread>
         <MdNotifications color="#fff" size={20} />
       </NotificationButton>
 
-      <NotificationMessages>
-        <PerfectScrollBar style={{ maxHeight: '300px', flexDirection: 'column', padding: '5px 15px' }}>
+      <NotificationMessages id="notifications" visible={visible}>
+        <PerfectScrollBar style={{
+          maxHeight: '300px', flexDirection: 'column', padding: '5px 15px',
+        }}
+        >
           <Message unread>
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
             <div>

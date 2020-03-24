@@ -7,7 +7,6 @@ export const Notification = styled.div`
 
 export const NotificationButton = styled.button`
   position: relative;
-
   background: none;
   border: none;
 
@@ -27,12 +26,15 @@ export const NotificationButton = styled.button`
 `;
 
 export const NotificationMessages = styled.div`
+  &#notifications {
+    display: ${(props) => (props.visible ? 'flex' : 'none')};
+  }
+
   position: absolute;
   width: 260px;
   left: calc(100% - 80px);
   top: calc(100% + 20px);
   background-color: var(--color1);
-  display: flex;
   flex-direction: column;
   padding: 15px 5px;
   border-radius: 4px;
