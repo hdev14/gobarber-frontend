@@ -1,15 +1,17 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { updateProfileRequest } from '../../store/modules/user/actions';
 
 import { UnForm, UnInput, PrimaryButton } from '../../styles/utils';
-
 import { ProfileContainer, Line, SecondaryButton } from './styles';
 
 export default function Profile() {
+  const disptach = useDispatch();
   const profile = useSelector((state) => state.user.profile);
 
   function handleOnSubmit(data) {
-    console.tron.log(data);
+    disptach(updateProfileRequest(data));
   }
 
   return (
@@ -19,8 +21,8 @@ export default function Profile() {
         <UnInput type="email" name="email" placeholder="Seu email" />
         <Line />
         <UnInput type="password" name="oldPassword" placeholder="Senha atual" />
-        <UnInput type="password" name="newPassword" placeholder="Nova senha" />
-        <UnInput type="password" name="confimPassword" placeholder="Confirmar nova senha" />
+        <UnInput type="password" name="password" placeholder="Nova senha" />
+        <UnInput type="password" name="confirmPassword" placeholder="Confirmar nova senha" />
         <PrimaryButton type="submit">atualizar perfil</PrimaryButton>
       </UnForm>
       <SecondaryButton type="button">Sair</SecondaryButton>
