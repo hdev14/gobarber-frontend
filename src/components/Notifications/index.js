@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { MdNotifications } from 'react-icons/md';
 import PerfectScrollBar from 'react-perfect-scrollbar';
 import { parseISO, formatDistanceToNow } from 'date-fns';
@@ -13,6 +13,9 @@ import {
 export default function Notifications() {
   const [visible, setVisible] = useState(false);
   const [notifications, setNotifications] = useState([]);
+  const hasUnread = useMemo(() => (
+    !!notifications.find((notification) => (notification.read === false))
+  ), [notifications]);
 
   useEffect(() => {
     async function fecthNotifications() {
@@ -44,7 +47,7 @@ export default function Notifications() {
 
   return (
     <Notification>
-      <NotificationButton onClick={() => setVisible(!visible)} hasUnread>
+      <NotificationButton onClick={() => setVisible(!visible)} hasUnread={hasUnread}>
         <MdNotifications color="#fff" size={20} />
       </NotificationButton>
 
@@ -59,12 +62,14 @@ export default function Notifications() {
             <Message key={notification._id} unread={!notification.read}>
               <p>{notification.content}</p>
               <div>
-                <button
-                  type="button"
-                  onClick={() => handleMarkAsRead(notification._id)}
-                >
-                  Marcar como lida
-                </button>
+                {!notification.read && (
+                  <button
+                    type="button"
+                    onClick={() => handleMarkAsRead(notification._id)}
+                  >
+                    Marcar como lida
+                  </button>
+                )}
                 <time>{notification.timeDistance}</time>
               </div>
             </Message>
