@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MdNotifications } from 'react-icons/md';
 import PerfectScrollBar from 'react-perfect-scrollbar';
+
+import api from '../../services/api';
 
 import {
   Notification, NotificationButton, NotificationMessages, Message,
@@ -8,6 +10,16 @@ import {
 
 export default function Notifications() {
   const [visible, setVisible] = useState(false);
+  const [notifications, setNotifications] = useState([]);
+
+  useEffect(() => {
+    async function fecthNotifications() {
+      const response = await api.get('/notifications');
+      setNotifications(response.data);
+    }
+
+    fecthNotifications();
+  }, []);
 
   return (
     <Notification>
@@ -17,58 +29,20 @@ export default function Notifications() {
 
       <NotificationMessages id="notifications" visible={visible}>
         <PerfectScrollBar style={{
-          maxHeight: '300px', flexDirection: 'column', padding: '5px 15px',
+          maxHeight: '300px',
+          flexDirection: 'column',
+          padding: '5px 15px',
         }}
         >
-          <Message unread>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-            <div>
-              <button type="button">Marcar como lida</button>
-              <time>há 2 dias</time>
-            </div>
-          </Message>
-          <Message>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-            <div>
-              <button type="button">Marcar como lida</button>
-              <time>há 2 dias</time>
-            </div>
-          </Message>
-          <Message>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-            <div>
-              <button type="button">Marcar como lida</button>
-              <time>há 2 dias</time>
-            </div>
-          </Message>
-          <Message>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-            <div>
-              <button type="button">Marcar como lida</button>
-              <time>há 2 dias</time>
-            </div>
-          </Message>
-          <Message>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-            <div>
-              <button type="button">Marcar como lida</button>
-              <time>há 2 dias</time>
-            </div>
-          </Message>
-          <Message>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-            <div>
-              <button type="button">Marcar como lida</button>
-              <time>há 2 dias</time>
-            </div>
-          </Message>
-          <Message>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-            <div>
-              <button type="button">Marcar como lida</button>
-              <time>há 2 dias</time>
-            </div>
-          </Message>
+          {notifications.map((notification) => (
+            <Message unread={!notification.read}>
+              <p>{notification.content}</p>
+              <div>
+                <button type="button">Marcar como lida</button>
+                <time>há 2 dias</time>
+              </div>
+            </Message>
+          ))}
         </PerfectScrollBar>
       </NotificationMessages>
     </Notification>
