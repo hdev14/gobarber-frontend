@@ -100,11 +100,6 @@ export const Message = styled.div`
       border: none;
       color: var(--color3);
       font-weight: 600;
-
-      ${(props) => !props.unread && css`
-        cursor: not-allowed;
-        color: gray;
-      `}
     }
   }
 `;
