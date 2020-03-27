@@ -7,7 +7,6 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100%;
   max-width: 315px;
   flex-direction: column;
   margin: 0 auto;
@@ -68,4 +67,12 @@ export const LinkFooter = styled.small`
     color: var(--color3);
     font-weight: 600;
   }
+`;
+
+export const SignContainer = styled.div`
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;

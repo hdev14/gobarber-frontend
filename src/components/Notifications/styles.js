@@ -3,6 +3,7 @@ import { lighten } from 'polished';
 
 export const Notification = styled.div`
   position: relative;
+  z-index: 10;
 `;
 
 export const NotificationButton = styled.button`
@@ -86,15 +87,18 @@ export const Message = styled.div`
     margin: 5px 0;
     width: 100%;
     display: flex;
+    flex-direction: column-reverse;
     justify-content: space-between;
 
     time {
+      align-self: flex-start;
       font-size: 12px;
       color: ${lighten(0.2, '#100C02')};
-      margin-right: 10px;
+      margin-bottom: 5px;
     }
 
     button {
+      align-self: flex-start;
       font-size: 12px;
       background: none;
       border: none;

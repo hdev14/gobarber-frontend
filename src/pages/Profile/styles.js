@@ -5,6 +5,8 @@ import { PrimaryButton } from '../../styles/utils';
 
 export const ProfileContainer = styled.div`
   width: 100%;
+  margin-top: 30px;
+
 `;
 
 export const Line = styled.hr`

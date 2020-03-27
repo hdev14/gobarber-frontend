@@ -1,14 +1,13 @@
 import styled from 'styled-components';
 
 export const DashboardContainer = styled.div`
-  margin: 15px 0;
-  height: 100%;
-  max-width: 600px;
-
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 100%;
+
   header {
+    margin: 15px 0;
     display: flex;
     align-items: center;
     margin-bottom: 30px;
@@ -25,8 +24,11 @@ export const DashboardContainer = styled.div`
 
   ul {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, auto);
     gap: 20px;
+    padding: 20px;
+    margin-bottom: 10px;
+    max-height: 400px;
   }
 `;
 

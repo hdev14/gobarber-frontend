@@ -8,7 +8,7 @@ import { signInRequest } from '../../store/modules/auth/actions';
 import logo from '../../assets/logo.svg';
 
 import {
-  Logo, UnForm, UnInput, PrimaryButton, LinkFooter,
+  Logo, UnForm, UnInput, PrimaryButton, LinkFooter, SignContainer,
 } from '../../styles/utils';
 
 const schema = Yup.object().shape({
@@ -29,7 +29,7 @@ export default function SignIn() {
   }
 
   return (
-    <>
+    <SignContainer>
       <Logo src={logo} alt="GoBarber" />
       <UnForm onSubmit={handleSubmit} schema={schema}>
         <UnInput name="email" text="email" placeholder="E-mail" autoFocus />
@@ -40,6 +40,6 @@ export default function SignIn() {
         Ainda não tem conta?
         <Link to="/register"> Registre-se</Link>
       </LinkFooter>
-    </>
+    </SignContainer>
   );
 }
