@@ -26,15 +26,13 @@ export default createGlobalStyle`
     --text-color2: #100C02;
   }
 
-  body, #root {
-    height: 100%;
-  }
 
   body {
     font-family: 'Montserrat', sans-serif;
     background-image: linear-gradient(to top left, var(--color2), var(--color1));
     background-repeat: no-repeat;
     -webkit-font-smoothing: antialiased;
+    height: 100vh;
  }
 
   h1, h2, h3 {
